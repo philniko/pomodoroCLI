@@ -1,8 +1,8 @@
 # pomodoroCLI
 ## usage
-> python3 main.py [OPTIONS] STUDYTIME BREAKTIME
+- python3 main.py [OPTIONS] STUDYTIME BREAKTIME
 
-Example:
+- Example:
 ```terminal
 python3 main.py 25 5
 ```
