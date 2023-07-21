@@ -1,11 +1,14 @@
 import time
 import click
 import os
+import shutil
 
+columns = shutil.get_terminal_size().columns
+centerRow = shutil.get_terminal_size().lines / 2
 
 def format_time(seconds):
     minutes, seconds = divmod(seconds, 60)
-    return '{:02d}:{:02d}'.format(minutes, seconds)
+    return ('{:02d}:{:02d}'.format(minutes, seconds).center(columns))
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -22,7 +25,8 @@ def pomodoro_timer(study, break_):
     while True:
         try:
             clear_screen()
-            click.echo('Work for {} minutes'.format(study))
+            click.echo('\n' * int(centerRow - 2))
+            click.echo('Work for {} minutes'.format(study).center(columns))
             for remaining in range(study * 60, -1, -1):
                 click.echo('\r{}'.format(format_time(remaining)), nl=False)
                 time.sleep(1)
